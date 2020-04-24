@@ -97,7 +97,7 @@ async function installTinyTexWindows() {
 
   fullPath = path.join(tempDirectory, fileName);
   
-  exec.exec(`"\`n" |& ${fullPath}`);
+  exec.exec(`FOR /L %%N IN () DO @echo Oops |& ${fullPath}`);
 
   core.addPath(
     path.join(process.env["APPDATA"] || "C:\\", "TinyTeX", "bin", "win32")
