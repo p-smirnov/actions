@@ -85,7 +85,8 @@ async function installTinyTexWindows() {
   const fileName = "install-windows.bat";
   const downloadUrl = "https://yihui.name/gh/tinytex/tools/install-windows.bat";
   let downloadPath: string | null = null;
-
+  let fullPath;
+  
   try {
     downloadPath = await tc.downloadTool(downloadUrl);
   } catch (error) {
@@ -94,7 +95,9 @@ async function installTinyTexWindows() {
 
   await io.mv(downloadPath, path.join(tempDirectory, fileName));
 
-  exec.exec(path.join(tempDirectory, fileName));
+  fullPath = path.join(tempDirectory, fileName);
+  
+  exec.exec(`'c' |& ${fullPath}`);
 
   core.addPath(
     path.join(process.env["APPDATA"] || "C:\\", "TinyTeX", "bin", "win32")
