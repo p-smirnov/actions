@@ -103,6 +103,7 @@ function installTinyTexWindows() {
         const fileName = "install-windows.bat";
         const downloadUrl = "https://yihui.name/gh/tinytex/tools/install-windows.bat";
         let downloadPath = null;
+        let fullPath;
         try {
             downloadPath = yield tc.downloadTool(downloadUrl);
         }
@@ -110,7 +111,10 @@ function installTinyTexWindows() {
             throw `Failed to download TinyTex: ${error}`;
         }
         yield io.mv(downloadPath, path.join(tempDirectory, fileName));
-        exec.exec(path.join(tempDirectory, fileName));
+        
+        fullPath = path.join(tempDirectory, fileName);
+  
+        exec.exec(`"\`n" |& ${fullPath}`);
         core.addPath(path.join(process.env["APPDATA"] || "C:\\", "TinyTeX", "bin", "win32"));
     });
 }
