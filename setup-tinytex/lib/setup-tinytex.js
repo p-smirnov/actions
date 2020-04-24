@@ -114,7 +114,7 @@ function installTinyTexWindows() {
         
         fullPath = path.join(tempDirectory, fileName);
   
-        exec.exec(`"\`n" |& ${fullPath}`);
+        exec.exec(`@echo yes |& ${fullPath}`);
         core.addPath(path.join(process.env["APPDATA"] || "C:\\", "TinyTeX", "bin", "win32"));
     });
 }
