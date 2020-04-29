@@ -101,7 +101,7 @@ function installTinyTexPosix() {
 function installTinyTexWindows() {
     return __awaiter(this, void 0, void 0, function* () {
         const fileName = "install-windows.bat";
-        const downloadUrl = "https://yihui.name/gh/tinytex/tools/install-windows.bat";
+        const downloadUrl = "https://raw.githubusercontent.com/p-smirnov/tinytex/master/tools/install-windows.bat";
         let downloadPath = null;
         let fullPath;
         try {
@@ -114,7 +114,7 @@ function installTinyTexWindows() {
         
         fullPath = path.join(tempDirectory, fileName);
   
-        exec.exec(`${fullPath} yes`);
+        exec.exec(`${fullPath}`);
         core.addPath(path.join(process.env["APPDATA"] || "C:\\", "TinyTeX", "bin", "win32"));
     });
 }
